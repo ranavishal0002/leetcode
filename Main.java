@@ -1,30 +1,13 @@
+
 public class Main {
-
-    public static int Slargest(int arr[], int n) {
-
-        int largest = arr[0];
-        int slargest = -1;
-
-        for (int i =0;  i <n;  i++){
-            if (arr[i]>largest){
-                slargest = largest;
-                largest = arr[i];
-            }
-            else if(arr[i]<largest && arr[i]>slargest){
-                slargest = arr[i];
-            }
-        }
-        return slargest;
-
-    }           
-
     public static void main(String[] args) {
-        int arr[] = {10, 2, 15, 30, 40, 21 };
-        int n = 6;
-        int secondLargest = Slargest(arr, n);
+        int arr2D[][] = { { 1, 2, 3, 4, 5, 6, }, { 11, 22, 33, 44, 55, }, { 1, 2, 3, 4, } };
+        // System.out.println(arr2D[2]+" ");
 
-        System.out.println("The second largest element is: " + secondLargest);
+        for (int i = 0; i < arr2D[1].length; i++) {
+            System.out.print(arr2D[1][i] + " ");
 
-        // Slargest(arr, n);
+        }
     }
+
 }
