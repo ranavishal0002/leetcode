@@ -1,0 +1,21 @@
+# Given an integer array nums where every element appears three times except for one, which appears exactly once. Find the single element and return it.
+
+class Solution {
+    public int singleNumber(int[] nums) {
+       Map <Integer, Integer> map = new HashMap<>();  // map data structure to store it in key-value pair
+
+       for (int i : nums){
+        if(map.containsKey(i)){
+            map.put(i, map.get(i)+1);
+        }else {
+            map.put(i, 1);
+        }
+       }
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 1) {
+                return entry.getKey(); // Return the number with frequency 1
+            }
+        }
+        return -1;
+    }
+}
