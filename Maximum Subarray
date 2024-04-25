@@ -1,0 +1,17 @@
+#   Given an integer array nums, find the subarraywith the largest sum, and return its sum.
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int sum = nums[0];
+        int maxsum=nums[0];
+         for (int i = 1; i < nums.length; i++) {
+            // Check if continuing the current subarray or starting a new one is better
+            sum = Math.max(nums[i], sum + nums[i]);
+            // Update maxsum if the current sum is greater
+            maxsum = Math.max(maxsum, sum);
+
+         }
+         return maxsum;
+        
+    }
+}
