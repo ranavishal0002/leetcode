@@ -1,0 +1,33 @@
+#  You are given an integer array nums and a positive integer k. Return the number of subarrays where the maximum element of nums appears at least k times in that subarray.
+#   A subarray is a contiguous sequence of elements within an array.
+
+
+class Solution {
+    public long countSubarrays(int[] nums, int k) {
+        int maxElement = Integer.MIN_VALUE; // Initialize maxElement to the smallest possible integer
+        for (int i = 0; i < nums.length; ++i) {
+            maxElement = Math.max(maxElement, nums[i]); // Find the maximum element in nums
+        }
+
+        long ans = 0; // Initialize the answer variable
+        int count = 0; // Initialize the count of occurrences of maxElement
+        int left = 0; // Initialize the left pointer for the sliding window
+
+        for (int right = 0; right < nums.length; ++right) {
+            if (nums[right] == maxElement) { // If the current element is maxElement, increment count
+                count++;
+            }
+
+            while (count >= k) { // Shrink the window until count is less than k
+                if (nums[left] == maxElement) { // If the element at left is maxElement, decrement count
+                    count--;
+                }
+                left++; // Move the left pointer to the right
+            }
+
+            ans += left; // Add the size of the valid subarrays to ans
+        }
+
+        return ans; // Return the final answer
+    }
+}
