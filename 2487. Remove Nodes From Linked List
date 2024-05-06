@@ -1,0 +1,52 @@
+## You are given the head of a linked list.Remove 
+## every node which has a node with a greater value
+## anywhere to the right side of it. Return the head of the modified linked list.
+
+
+
+
+####################################################################### SOLUTION ############################3############################################################
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+
+    class Solution {
+    public ListNode removeNodes(ListNode head) {
+
+        Stack<ListNode> stack = new Stack<>();
+        ListNode temp = head;
+        // push all the node in the stack
+        while(temp!=null){
+            stack.push(temp);
+            temp= temp.next;
+        }
+          // create ans list 
+        ListNode new_head = stack.pop();
+        int max_val = new_head.val;
+        while(!stack.isEmpty()){
+            ListNode node = stack.pop();
+            if(node.val < max_val)
+            {
+                continue;
+            }
+            else {
+                //insert new head
+                node.next = new_head;
+                new_head = node;
+                max_val = node.val;
+
+            }
+
+        }
+        return new_head;
+    }
+}
