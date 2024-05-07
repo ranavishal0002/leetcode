@@ -1,0 +1,43 @@
+
+## Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.
+## If target is not found in the array, return [-1, -1].You must write an algorithm with O(log n) runtime complexity.
+
+
+
+##################################################################### SOLUTION #############################################################################################
+
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+    int left =0; 
+    int right = nums.length-1;
+    int start = -1;
+    int end = -1;
+
+    while(left <= right){
+        int mid = left + (right-left)/2;
+
+// this condition will work if target is at the mid other wise binary search will work.
+        if(nums[mid]==target){
+            start= mid;
+            end = mid;
+             // Update start to find the first occurrence of target
+                while (start > 0 && nums[start - 1] == target) {
+                    start--;
+                }
+
+                // Update end to find the last occurrence of target
+                while (end < nums.length - 1 && nums[end + 1] == target) {
+                    end++;
+                }
+                 return new int[]{start, end};
+        }
+ // this is used to set the mid value to the target
+       if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+    }
+    return new int []{-1,-1};        
+    }
+}
