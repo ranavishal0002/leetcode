@@ -1,0 +1,30 @@
+# You are given the head of a non-empty linked list representing a non-negative integer without leading zeroes.
+# Return the head of the linked list after doubling it.
+
+
+
+#################################################### SOLUTION ############################################################
+
+class Solution {
+    public ListNode doubleIt(ListNode head) {
+        // handle head related cases
+// when carry is generated then we need to insert new node at head position
+
+         ListNode temp = head;
+        if(head.val > 4){
+            ListNode node = new ListNode(1);
+            node.next = head;
+            head = node; 
+        } 
+         while (temp!=null){
+            int carry =0;
+            if(temp.next!=null && temp.next.val>4){
+                carry = 1;
+            }
+            int new_val = (temp.val*2 + carry)%10;
+            temp.val = new_val;
+            temp = temp.next;
+         }
+         return head;
+    }
+}
