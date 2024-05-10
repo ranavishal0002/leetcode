@@ -1,0 +1,44 @@
+## You are given a sorted integer array arr containing 1 and prime numbers, where all the integers of arr are unique. You are also given an integer k.
+## For every i and j where 0 <= i < j < arr.length, we consider the fraction arr[i] / arr[j].Return the kth smallest fraction considered. Return your 
+## answer as an array of integers of size 2, where answer[0] == arr[i] and answer[1] == arr[j].
+
+
+
+
+
+#################################################################### SOLUTION #######################################################################
+
+
+class Solution {
+    public int[] kthSmallestPrimeFraction(int[] nums, int k) {
+        int n = nums.length;
+        // Store fractions as double values
+        double[] fractions = new double[n * (n - 1) / 2];
+        int fraction_index = 0;
+
+        // Calculate all possible fractions
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                fractions[fraction_index++] = (double) nums[i] / nums[j];
+            }
+        }
+
+        // Sort the fractions array in ascending order
+        Arrays.sort(fractions);
+
+        // Find the k-th smallest fraction
+        double kth_fraction_val = fractions[k - 1];
+
+        // Iterate through nums to find the corresponding numerator and denominator
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if ((double) nums[i] / nums[j] == kth_fraction_val) {
+                    return new int[]{nums[i], nums[j]};
+                }
+            }
+        }
+
+        // If no fraction is found, return an empty array
+        return new int[]{};
+    }
+}
