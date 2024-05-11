@@ -1,0 +1,42 @@
+## Given a string s and an integer k, return the maximum number of vowel letters in any substring of s with length k.
+## Vowel letters in English are 'a', 'e', 'i', 'o', and 'u'.
+
+
+
+
+
+
+
+
+#################################### SOLUTION #######################################################
+
+
+
+
+
+class Solution {
+    public static boolean isVowel(char ch) {
+        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+    }
+    public int maxVowels(String s, int k) {
+        int max_count = 0;
+        int current_count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            
+            if (isVowel(ch)) {
+                current_count++;
+            }
+            if (i >= k) {
+                char removedChar = s.charAt(i - k);
+                if (isVowel(removedChar)) {
+                    current_count--;
+                }
+            }
+            
+            max_count = Math.max(max_count, current_count);
+        }
+        
+        return max_count;
+    }
+}
