@@ -1,0 +1,74 @@
+# In a gold mine grid of size m x n, each cell in this mine has an integer representing the amount of gold in that cell, 0 if it is empty.
+
+Return the maximum amount of gold you can collect under the conditions:
+Every time you are located in a cell you will collect all the gold in that cell.
+From your position, you can walk one step to the left, right, up, or down.
+You can't visit the same cell more than once.
+Never visit a cell with 0 gold.
+You can start and stop collecting gold from any position in the grid that has some gold.
+
+
+
+################################################################### SOLUTION #################################################################################
+
+
+class Solution {
+    int row; // Variable to store the number of rows in the grid
+    int col; // Variable to store the number of columns in the grid
+    boolean[][] visited; // 2D array to track visited cells
+
+    public int getMaximumGold(int[][] grid) {
+        int rows = grid.length; // Get the number of rows in the grid
+        int columns = grid[0].length; // Get the number of columns in the grid
+        visited = new boolean[rows][columns]; // Initialize the visited array with the grid dimensions
+        int total_gold = 0; // Variable to store the total amount of gold in the grid
+
+        // Calculate the total amount of gold in the grid
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                total_gold += grid[i][j];
+            }
+        }
+
+        int max_gold = 0; // Variable to store the maximum amount of gold that can be collected
+
+        // Iterate through each cell in the grid to find the maximum amount of gold
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (grid[i][j] != 0) { // If the cell contains gold
+                    max_gold = Math.max(max_gold, dfs(i, j, grid)); // Perform DFS to find the maximum gold
+                    if (max_gold == total_gold) { // If the maximum gold equals total gold, no need to continue
+                        return total_gold; // Return total gold as the maximum achievable gold
+                    }
+                }
+            }
+        }
+        return max_gold; // Return the maximum gold that can be collected
+    }
+
+    // Depth First Search (DFS) function to explore adjacent cells
+    public int dfs(int row, int col, int[][] grid) {
+        int rows = grid.length; // Get the number of rows in the grid
+        int columns = grid[0].length; // Get the number of columns in the grid
+
+        // Base case: If the cell is out of bounds or visited or empty, return 0
+        if (row < 0 || row >= rows || col < 0 || col >= columns || grid[row][col] == 0 || visited[row][col]) {
+            return 0;
+        }
+
+        visited[row][col] = true; // Mark the cell as visited
+        int max_gold = 0; // Variable to store the maximum amount of gold that can be collected from this cell
+
+        int[][] direction = new int[][]{{-1, 0}, {0, 1}, {1, 0}, {0, -1}}; // Array representing four possible directions
+
+        // Explore each direction recursively
+        for (int i = 0; i < 4; i++) {
+            int next_row = row + direction[i][0]; // Calculate the next row
+            int next_col = col + direction[i][1]; // Calculate the next column
+            max_gold = Math.max(max_gold, dfs(next_row, next_col, grid)); // Recursively call DFS for the next cell
+        }
+
+        visited[row][col] = false; // Mark the cell as unvisited after exploring all directions
+        return grid[row][col] + max_gold; // Return the total gold collected from this cell and its sub-tree
+    }
+}
