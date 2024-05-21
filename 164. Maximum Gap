@@ -1,0 +1,27 @@
+# Given an integer array nums, return the maximum difference between two successive elements in its sorted form. If the array contains less than two elements, return 0.
+# You must write an algorithm that runs in linear time and uses linear extra space.
+
+
+################################################ SOLUTION ########################################################################
+
+class Solution {
+    public int maximumGap(int[] nums) {
+         // Handle edge cases
+        if (nums == null || nums.length < 2) {
+            return 0;
+        }
+
+        int max_diff = 0;
+
+        Arrays.sort(nums);
+
+        for (int i=1; i<nums.length; i++){
+              int  diff = nums[i]- nums[i-1];
+                max_diff = Math.max(max_diff, diff);
+            }
+        
+
+        return max_diff;
+        
+    }
+}
