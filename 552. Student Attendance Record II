@@ -1,0 +1,54 @@
+
+An attendance record for a student can be represented as a string where each character signifies whether the student was absent, late, or present on that day. The record only contains the following three characters:
+
+'A': Absent.
+'L': Late.
+'P': Present.
+Any student is eligible for an attendance award if they meet both of the following criteria:
+
+The student was absent ('A') for strictly fewer than 2 days total.
+The student was never late ('L') for 3 or more consecutive days.
+Given an integer n, return the number of possible attendance records of length n that make a student eligible for an attendance award. The answer may be very large, so return it modulo 109 + 7.
+
+
+
+
+
+############################################# SOLUTION ###################################3
+
+
+
+
+class Solution {
+    private static final int MOD = 1000000007;
+    private Integer[][][] memo;
+
+    public int checkRecord(int n) {
+        memo = new Integer[n + 1][2][3]; // Memoization table
+        return helper(n, 0, 0); // Start with length n, 0 'A's, and 0 consecutive 'L's
+    }
+
+    private int helper(int n, int cntA, int concL) {
+        if (n == 0) { // Base case
+            return 1;
+        }
+        if (memo[n][cntA][concL] != null) { // Memoization check
+            return memo[n][cntA][concL];
+        }
+
+        int result = 0;
+        // Append 'P' (Present)
+        result = (result + helper(n - 1, cntA, 0)) % MOD;
+        // Append 'A' (Absent)
+        if (cntA == 0) {
+            result = (result + helper(n - 1, cntA + 1, 0)) % MOD;
+        }
+        // Append 'L' (Late)
+        if (concL < 2) {
+            result = (result + helper(n - 1, cntA, concL + 1)) % MOD;
+        }
+
+        memo[n][cntA][concL] = result; // Store the result in the memo table
+        return result;
+    }
+}
