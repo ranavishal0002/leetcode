@@ -1,0 +1,27 @@
+# Write a function that reverses a string. The input string is given as an array of characters s.
+  You must do this by modifying the input array in-place with O(1) extra memory.
+
+
+
+############################################ SOLUTION #############################################
+
+class Solution {
+    public void reverseString(char[] s) {
+
+        // index to traverse the char array
+        int start_index = 0;
+        int end_index = s.length-1;
+
+        while(start_index < end_index){
+   
+          // swap the char 
+            char temp = s[start_index];
+            s[start_index] = s[end_index];
+            s[end_index] = temp;
+
+            // move index accordingly 
+             start_index++;
+            end_index--;
+        }
+    }
+}
