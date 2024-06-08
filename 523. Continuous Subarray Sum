@@ -1,0 +1,44 @@
+# Given an integer array nums and an integer k, return true if nums has a good subarray or false otherwise.
+  A good subarray is a subarray where: 
+its length is at least two, and
+the sum of the elements of the subarray is a multiple of k.
+
+Note that:
+A subarray is a contiguous part of the array.
+An integer x is a multiple of k if there exists an integer n such that x = n * k. 0 is always a multiple of k.
+
+
+####################################### SOLUTION ######################################################
+
+
+class Solution {
+    public boolean checkSubarraySum(int[] nums, int k) {
+        // Create a HashMap to store the remainder of the sum and its corresponding index.
+        // Initialize with remainder 0 at index -1 to handle the case where a valid subarray starts at index 0.
+        HashMap<Integer, Integer> remainderMap = new HashMap<>();
+        remainderMap.put(0, -1);
+
+        int sum = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            int remainder = sum % k;
+
+            // Handle negative remainders by adjusting them to be positive.
+            if (remainder < 0) {
+                remainder += k;
+            }
+
+            if (remainderMap.containsKey(remainder)) {
+                if (i - remainderMap.get(remainder) > 1) {
+                    return true;
+                }
+            } else {
+                // Store the first occurrence of this remainder and its index.
+                remainderMap.put(remainder, i);
+            }
+        }
+
+        return false;
+    }
+}
