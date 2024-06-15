@@ -1,0 +1,40 @@
+
+
+
+
+
+
+
+public class IPO {
+    
+    public static int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
+        int n = profits.length;
+
+        // Min-Heap based on capital required
+        PriorityQueue<int[]> minCapitalHeap = new PriorityQueue<>(n, Comparator.comparingInt(a -> a[0]));
+        
+        // Max-Heap based on profits
+        PriorityQueue<int[]> maxProfitHeap = new PriorityQueue<>(n, (a, b) -> b[1] - a[1]);
+
+        // Populate the minCapitalHeap with all projects
+        for (int i = 0; i < n; i++) {
+            minCapitalHeap.offer(new int[]{capital[i], profits[i]});
+        }
+
+        for (int i = 0; i < k; i++) {
+            // Transfer all projects that can be started with current capital to maxProfitHeap
+            while (!minCapitalHeap.isEmpty() && minCapitalHeap.peek()[0] <= w) {
+                maxProfitHeap.offer(minCapitalHeap.poll());
+            }
+
+            // If there are no projects we can start, break out of the loop
+            if (maxProfitHeap.isEmpty()) {
+                break;
+            }
+
+            // Pick the project with the highest profit
+            w += maxProfitHeap.poll()[1];
+        }
+
+        return w;
+    }
