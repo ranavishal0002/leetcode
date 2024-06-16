@@ -1,0 +1,27 @@
+# Given a sorted integer array nums and an integer n, add/patch elements to the array such that any number in the range [1, n] inclusive 
+  can be formed by the sum of some elements in the array.Return the minimum number of patches required.
+
+
+########################################### SOLUTION ############################################
+class Solution {
+    public int minPatches(int[] nums, int n) {
+         long miss = 1; // The smallest number that can't be formed yet
+        int i = 0; // Index for nums array
+        int patches = 0; // Number of patches needed
+
+        while (miss <= n) {
+            if (i < nums.length && nums[i] <= miss) {
+                // If the current number in nums can contribute to forming 'miss', use it
+                miss += nums[i];
+                i++;
+            } else {
+                // If the current number in nums is too large, add 'miss' as a patch
+                miss += miss;
+                patches++;
+            }
+        }
+
+        return patches;
+        
+    }
+}
