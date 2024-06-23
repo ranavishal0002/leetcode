@@ -1,0 +1,36 @@
+# Given an array of integers nums and an integer limit, return the size of the longest non-empty subarray
+ such that the absolute difference between any two elements of this subarray is less than or equal to limit.
+
+
+
+################################### SOLUTION #############################################
+
+
+
+class Solution {
+    public int longestSubarray(int[] nums, int limit) {
+
+       int maxlength = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            int minValue = nums[i];
+            int maxValue = nums[i];
+            
+            // if maximum possible subarray length from i is equal to maxLength
+            if (maxlength == nums.length - i)
+                break;
+            for (int j = i; j < nums.length; j++) {
+                minValue = Math.min(minValue, nums[j]);
+                maxValue = Math.max(maxValue, nums[j]);
+
+                if (maxValue - minValue <= limit) {
+                    maxlength = Math.max(maxlength, j - i + 1);
+                } else {
+                    break; // No need to check further as the difference exceeded the limit
+                }
+            }
+        }
+
+        return maxlength;
+    }
+}
