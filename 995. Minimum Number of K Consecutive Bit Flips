@@ -1,0 +1,45 @@
+# ou are given a binary array nums and an integer k.
+
+A k-bit flip is choosing a subarray of length k from nums and simultaneously changing every 0 in the subarray to 1, and every 1 in the subarray to 0.
+
+Return the minimum number of k-bit flips required so that there is no 0 in the array. If it is not possible, return -1.
+
+A subarray is a contiguous part of an array.
+
+
+
+
+
+
+
+
+
+####################################### SOLUTION ############################################
+class Solution {
+    public int minKBitFlips(int[] nums, int k) {
+           int n = nums.length;
+        int flips = 0;  // Number of flips made so far
+        int flipped = 0;  // Current flip status in the window
+        int[] isFlipped = new int[n];  // Tracking flips
+
+        for (int i = 0; i < n; i++) {
+            // If the left end of the window goes out of bounds, we need to remove its effect
+            if (i >= k) {
+                flipped ^= isFlipped[i - k];
+            }
+
+            // If current element needs to be flipped
+            if (nums[i] == flipped) {
+                // If there are not enough elements left to flip, return -1
+                if (i + k > n) {
+                    return -1;
+                }
+                flips++;  // Increase flip count
+                flipped ^= 1;  // Flip the status
+                isFlipped[i] = 1;  // Mark this index as flipped
+            }
+        }
+
+        return flips;
+    }
+}
