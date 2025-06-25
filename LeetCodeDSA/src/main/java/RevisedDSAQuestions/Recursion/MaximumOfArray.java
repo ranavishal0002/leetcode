@@ -1,17 +1,18 @@
 package RevisedDSAQuestions.Recursion;
 
 public class MaximumOfArray {
-    public static int maxOfArr(int arr[], int n){
-       return   helper(arr, 0);
+    public static int maxOfArr(int []arr, int n){
+       return helper(arr,n, 0);
     }
-    public static int helper(int []arr, int idx ){
-        if(idx> arr.length-1){
+    public static int helper(int arr[], int n , int index){
+
+        // Base condition
+        if(index> n-1){
             return 0;
         }
-        int max= helper(arr, idx+1);
-        if(max< arr[idx]){
-            max= arr[idx];
-        }
+        int max = helper(arr, n, index+1);
+        if(max<arr[index])
+             max= arr[index];
         return max;
     }
     public static void main(String[] args) {
@@ -20,3 +21,4 @@ public class MaximumOfArray {
         System.out.println(maxOfArr(arr,n));
     }
 }
+

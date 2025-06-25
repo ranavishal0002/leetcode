@@ -1,7 +1,7 @@
 package RevisedDSAQuestions.Recursion;
 
 public class PrintNto1 {
-    public static void fun(int n ){
+    public static void fun(int n ) {
         if (n ==0){  // Base condition
             return;
         }
