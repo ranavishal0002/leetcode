@@ -10,7 +10,6 @@ class SortArray{
                 countZero++;
             }
         }
-
         int resultArray [] = new int[n];
         for(int i=0; i<countZero; i++){
             resultArray[i]=0;

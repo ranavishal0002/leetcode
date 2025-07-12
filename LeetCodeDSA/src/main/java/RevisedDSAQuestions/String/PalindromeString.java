@@ -2,22 +2,25 @@ package RevisedDSAQuestions.String;
 
 public class PalindromeString {
     static boolean isPalindrome(String s){
-//        String str = s.replaceAll("[^a-zA-Z]", "").toLowerCase();
-        int n = s.length();
-        int left =0;
-        int right = n-1;
-        while(left < right) {
-            if (s.charAt(left) != s.charAt(right)) {
+        String str = s.replaceAll("[^a-zA-Z]", "").toLowerCase();
+        int start =0;
+        int end = str.length()-1;
+
+        while(start < end){
+            if(str.charAt(start)!=str.charAt(end)){
                 return false;
+            } else {
+                start++;
+                end--;
             }
-            left++;
-            right--;
         }
         return true;
     }
     public static void main(String[] args) {
-        String s= "abba";
+        String s= "abBa";
         int n = s.length();
         System.out.println(isPalindrome(s));
     }
 }
+
+

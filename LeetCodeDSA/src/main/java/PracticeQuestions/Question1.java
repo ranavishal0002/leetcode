@@ -2,7 +2,6 @@ package PracticeQuestions;
 
 class Solution {
     public boolean containsNearbyAlmostDuplicate(int[] nums, int indexDiff, int valueDiff) {
-
         int n = nums.length;
         boolean ans = false;
         int i =0, j=1;
@@ -33,6 +32,6 @@ public class Question1 {
         int indexDiff = 3;
         int valueDiff = 0;
         boolean result = sol.containsNearbyAlmostDuplicate(nums, indexDiff, valueDiff);
-        System.out.println(result);
+        System.out.print(result);
     }
 }

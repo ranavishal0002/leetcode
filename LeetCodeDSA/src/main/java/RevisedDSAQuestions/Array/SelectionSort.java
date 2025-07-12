@@ -3,7 +3,6 @@ package RevisedDSAQuestions.Array;
 public class SelectionSort {
 
     public static void sorting(int[] arr, int n) {
-
         // find the minIndex first
         for (int i = 0; i < n - 1; i++) {
             int minIdx = i;

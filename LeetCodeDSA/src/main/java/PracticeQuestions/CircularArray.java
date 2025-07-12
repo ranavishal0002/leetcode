@@ -7,11 +7,11 @@ class Findelement{
         for(int i =0; i<n; i++){
             for(int j =1; j<=k; j++){
 
-//                int nextIndex = (i+j)%n;
-//                System.out.print(a[nextIndex]+" ");
+                int nextIndex = (i+j)%n;
+                System.out.print(a[nextIndex]+" ");
 
-                int preIndex = (i-j+n)%n;
-                System.out.print(a[preIndex]+" ");
+//                int preIndex = (i-j+n)%n;
+//                System.out.print(a[preIndex]+" ");
             }
         }
     }

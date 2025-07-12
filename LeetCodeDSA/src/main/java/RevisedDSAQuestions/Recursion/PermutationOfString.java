@@ -35,7 +35,6 @@ public class PermutationOfString {
     public static void printPermutation(String str, int n) {
         helperFunction(str, "");
     }
-
     static void helperFunction(String str, String curr) {
         if (str.length() == 0) {
             System.out.println(curr);
