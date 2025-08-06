@@ -36,3 +36,9 @@ public class CreateHashMap {
         }
     }
 }
+/*
+keySet()	When you need only keys, and want to look up values manually	map.get(key)
+entrySet()	When you need both keys and values together	entry.getKey() and entry.getValue()
+
+
+ */

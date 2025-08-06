@@ -12,15 +12,19 @@ public class RemoveDuplicates {
     }
     static Node removeRepeatedNode(Node head){
         Node curr = head;
-        while(curr!=null && curr.next!= null){
-            if(curr.data == curr.next.data){
-                curr.next = curr.next.next;
-            } else {
-                curr= curr.next;
-            }
-        }
-        return head;
+       while(curr!=null){
+           Node run = curr;
+           while(run.next != null){
+               if(run.next.data ==curr.data){
+                   run.next = run.next.next;
+               }else {
+                   run = run.next;
+               }
+           }
+           curr= curr.next;
 
+       }
+        return head;
     }
     static void printList(Node head){
         Node curr = head;

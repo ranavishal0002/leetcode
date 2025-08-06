@@ -1,8 +1,9 @@
+package RevisedDSAQuestions.Stack;
+
 import java.util.*;
 
-class Solution {
-    public int[] nextGreaterElements(int[] nums) {
-        int n = nums.length;
+class  StackProblem {
+    public static int[] nextGreaterElements(int[] nums, int n ) {
         int res[] = new int[n];
 
     // fill all the array with -1
@@ -29,4 +30,13 @@ class Solution {
 
         return res;
     }
+
+    public static void main(String[] args) {
+        int arr[] = {1,5,3,8,2,6};
+        int n= arr.length;
+
+        System.out.print(Arrays.toString(nextGreaterElements(arr,n)));
+
+    }
+
 }

@@ -9,7 +9,6 @@ public class InsertAtBegin {
        head = insertNewHead(head, 2);
         printHead(head);
     }
-
     static Node insertNewHead(Node head, int val) {
 
         Node temp = new Node(val);

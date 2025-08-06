@@ -11,15 +11,14 @@ public class InsertAtEnd {
     }
     static Node insertNewEnd(Node head, int val){
         Node temp = new Node(val);
-        if(head == null){
-            return  temp;
+        if (head== null){
+            return temp;
         }
         Node curr= head;
-        while(curr.next!=null){
-            curr= curr.next;
+        while(curr.next !=null){
+            curr = curr.next;
         }
-        curr.next = temp;
-
+        curr.next= temp;
         return head;
     }
     static void printList(Node head){

@@ -18,7 +18,7 @@ public class InsertAtNPosition {
             return temp;
         }
         Node curr = head;
-        for (int i = 1; i <= pos - 2 && curr != null; i++) {
+        for (int i = 1; i <pos - 1 && curr != null; i++) {
             curr = curr.next;
         }
         // If position is beyond list length, return original head

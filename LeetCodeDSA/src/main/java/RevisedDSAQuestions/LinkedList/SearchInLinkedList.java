@@ -9,17 +9,18 @@ public class SearchInLinkedList {
         System.out.print(printNode(head, 20));
     }
     static int printNode(Node head, int x){
-        int pos = 1;
-        Node current = head;
+       int pos= 1;
+       Node curr = head;
 
-        while(current!=null){
-            if(current.data==x){
-                return pos;
-            } else {
-                pos++;
-                current= current.next;
-            }
-        }
-        return -1;
+       while (curr!= null){
+           if(curr.data== x){
+               return pos;
+           }
+           else {
+               pos++;
+               curr= curr.next;
+           }
+       }
+       return  -1;
     }
 }
